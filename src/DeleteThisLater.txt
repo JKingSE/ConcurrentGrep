@@ -1,3 +1,9 @@
+It works by running main in CGrep.java with program arguments of [pattern] [text file 1] [text file 2]...
+Ex 1. toop C:\Users\norwa\OneDrive\Documents\GitHub\ConcurrentGrep\src\Text.txt C:\Users\norwa\OneDrive\Documents\GitHub\ConcurrentGrep\src\Text2.txt
+Ex 1. o C:\Users\norwa\OneDrive\Documents\GitHub\ConcurrentGrep\src\Text.txt
+Ex 1. Helloworld C:\Users\norwa\OneDrive\Documents\GitHub\ConcurrentGrep\src\Text.txt
+
+
 Only the CGrep.java file is necessary.  We can either change the other files names or how they are arranged.
 
 Change the names of variables.

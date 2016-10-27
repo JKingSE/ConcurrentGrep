@@ -39,7 +39,6 @@ public class CGrep {
 
         // Check argument length
         if (args.length > 1) {
-
             for (int i = 1; i < args.length; i++) {
                 String argument = args[i].toString();
                 File file = new File(argument);
@@ -59,8 +58,10 @@ public class CGrep {
                         System.err.print(e.toString());
                     }
                 }
+                else{
+                    System.out.println(argument + " not found");
+                }
             }
-
         } else if (args.length == 1) {
             InputStream input = System.in;
             Callable<Found> searcher = new FileSearch(input, pattern);
@@ -72,10 +73,6 @@ public class CGrep {
             } catch (ExecutionException e) {
                 System.err.print(e.toString());
             }
-        } else {
-            System.out.println("Usage: java CGrep [pattern] [file...]");
-            System.out.println("OR");
-            System.out.println("Usage: java CGrep [pattern]");
         }
 
         executor.shutdown();
