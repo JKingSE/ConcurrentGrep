@@ -1,0 +1,8 @@
+Only the CGrep.java file is necessary.  We can either change the other files names or how they are arranged.
+
+Change the names of variables.
+
+Change the order of methods.
+
+Change some of the logic (i.e. transform for loops into while loops)
+
