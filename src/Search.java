@@ -14,13 +14,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * FileSearch looks for the pattern in the given input stream.
+ * Search looks for the pattern in the given input stream.
  *
  * @author Yin
  * @author sst8696
  * @author peter
  */
-public class FileSearch implements Callable<Found> {
+public class Search implements Callable<ListOfFound> {
 
     /**
      * Input stream.
@@ -33,9 +33,9 @@ public class FileSearch implements Callable<Found> {
     private final String patternString;
 
     /**
-     * The result stored in a Found object.
+     * The result stored in a ListOfFound object.
      */
-    private final Found result;
+    private final ListOfFound result;
 
     /**
      * Constructor for handling file.
@@ -44,10 +44,10 @@ public class FileSearch implements Callable<Found> {
      * @param patternString
      * @throws FileNotFoundException
      */
-    public FileSearch(File currentFile, String patternString)
+    public Search(File currentFile, String patternString)
             throws FileNotFoundException {
         this.currentStream = new FileInputStream(currentFile);
-        this.result = new Found();
+        this.result = new ListOfFound();
         this.result.setName(currentFile.getName());
         this.patternString = patternString;
     }
@@ -58,9 +58,9 @@ public class FileSearch implements Callable<Found> {
      * @param input
      * @param patternString
      */
-    public FileSearch(InputStream input, String patternString) {
+    public Search(InputStream input, String patternString) {
         this.currentStream = input;
-        this.result = new Found();
+        this.result = new ListOfFound();
         this.patternString = patternString;
         this.result.setName("-");
     }
@@ -69,12 +69,12 @@ public class FileSearch implements Callable<Found> {
      * Look for the pattern on the input stream or throws an exception if unable
      * to do so.
      *
-     * @return result - Found object with a list of the lines that have the
+     * @return result - ListOfFound object with a list of the lines that have the
      *         pattern
      * @throw Exception - if unable to compute a result
      */
     @Override
-    public Found call() throws Exception {
+    public ListOfFound call() throws Exception {
         // Lines with the pattern found
         List<String> list = new ArrayList<String>();
 

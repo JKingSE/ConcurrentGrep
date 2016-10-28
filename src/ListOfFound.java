@@ -11,7 +11,7 @@ import java.util.List;
  * @author sst8696
  * @author peter
  */
-public class Found {
+public class ListOfFound {
 
     /**
      * Name of the file.
@@ -26,7 +26,7 @@ public class Found {
     /**
      * Default Constructor
      */
-    public Found() {
+    public ListOfFound() {
         this.setName(null);
         this.setEntries(new ArrayList<String>());
     }
