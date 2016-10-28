@@ -1,14 +1,14 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileInputStream;
 import java.util.concurrent.Callable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Search searches the input stream for a given pattern
@@ -16,48 +16,45 @@ import java.util.regex.Pattern;
  * Created by John King on 27-Oct-16.
  */
 public class Search implements Callable<ListOfFound> {
-
-    // Input stream
-    private final InputStream currentStream;
-
-    // The pattern
-    private final String patternString;
-
     // The Found object to store search results
-    private final ListOfFound result;
+    private final ListOfFound results;
+    // Input stream
+    private final InputStream stream;
+    // The pattern
+    private final String pattern;
 
     /**
      * Constructor for file
      *
-     * @param currentFile
-     * @param patternString
+     * @param file
+     * @param pattern
      * @throws FileNotFoundException
      */
-    public Search(File currentFile, String patternString)
+    public Search(File file, String pattern)
             throws FileNotFoundException {
-        this.currentStream = new FileInputStream(currentFile);
-        this.result = new ListOfFound();
-        this.result.setName(currentFile.getName());
-        this.patternString = patternString;
+        this.stream = new FileInputStream(file);
+        this.results = new ListOfFound();
+        this.results.setName(file.getName());
+        this.pattern = pattern;
     }
 
     /**
      * Constructor for stdin
      *
      * @param input
-     * @param patternString
+     * @param pattern
      */
-    public Search(InputStream input, String patternString) {
-        this.currentStream = input;
-        this.result = new ListOfFound();
-        this.patternString = patternString;
-        this.result.setName("-");
+    public Search(InputStream input, String pattern) {
+        this.stream = input;
+        this.results = new ListOfFound();
+        this.pattern = pattern;
+        this.results.setName("-");
     }
 
     /**
      * Search for the pattern in the input stream
      *
-     * @return result - Found object with a list of the lines that have the
+     * @return results - Found object with a list of the lines that have the
      *         pattern
      * @throw Exception - If no results are found
      */
@@ -73,8 +70,8 @@ public class Search implements Callable<ListOfFound> {
         long lineCount = 0;
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(
-                currentStream));
-        Pattern expression = Pattern.compile(patternString);
+                stream));
+        Pattern expression = Pattern.compile(pattern);
 
         while ((currentLine = reader.readLine()) != null) {
             Matcher matcher = expression.matcher(currentLine);
@@ -86,8 +83,8 @@ public class Search implements Callable<ListOfFound> {
             lineCount++;
         }
 
-        result.setEntries(list);
+        results.setMatches(list);
 
-        return result;
+        return results;
     }
 }
