@@ -1,6 +1,3 @@
-/**
- * Created by John King on 27-Oct-16.
- */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,31 +11,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Search looks for the pattern in the given input stream.
+ * Search searches the input stream for a given pattern
  *
- * @author Yin
- * @author sst8696
- * @author peter
+ * Created by John King on 27-Oct-16.
  */
 public class Search implements Callable<ListOfFound> {
 
-    /**
-     * Input stream.
-     */
+    // Input stream
     private final InputStream currentStream;
 
-    /**
-     * The pattern we are searching for.
-     */
+    // The pattern
     private final String patternString;
 
-    /**
-     * The result stored in a ListOfFound object.
-     */
+    // The Found object to store search results
     private final ListOfFound result;
 
     /**
-     * Constructor for handling file.
+     * Constructor for file
      *
      * @param currentFile
      * @param patternString
@@ -53,7 +42,7 @@ public class Search implements Callable<ListOfFound> {
     }
 
     /**
-     * Constructor for handling standard input.
+     * Constructor for stdin
      *
      * @param input
      * @param patternString
@@ -66,22 +55,21 @@ public class Search implements Callable<ListOfFound> {
     }
 
     /**
-     * Look for the pattern on the input stream or throws an exception if unable
-     * to do so.
+     * Search for the pattern in the input stream
      *
-     * @return result - ListOfFound object with a list of the lines that have the
+     * @return result - Found object with a list of the lines that have the
      *         pattern
-     * @throw Exception - if unable to compute a result
+     * @throw Exception - If no results are found
      */
     @Override
     public ListOfFound call() throws Exception {
-        // Lines with the pattern found
+        // Matching lines
         List<String> list = new ArrayList<String>();
 
-        // The line currently being read in the file.
+        // The current line
         String currentLine;
 
-        // The current line number.
+        // The current line number
         long lineCount = 0;
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(

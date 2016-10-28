@@ -1,38 +1,26 @@
-/**
- * Created by John King on 27-Oct-16.
- */
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Model to store search result.
+ * Model to represent results returned from the search
  *
- * @author Yin
- * @author sst8696
- * @author peter
+ * Created by John King on 27-Oct-16.
  */
 public class ListOfFound {
 
-    /**
-     * Name of the file.
-     */
+    // Filename
     private String name;
 
-    /**
-     * Lines that contain the pattern.
-     */
+    // Matching lines
     private List<String> entries;
 
-    /**
-     * Default Constructor
-     */
     public ListOfFound() {
         this.setName(null);
         this.setEntries(new ArrayList<String>());
     }
 
     /**
-     * Getter for name.
+     * Accessor for name
      *
      * @return the name
      */
@@ -41,17 +29,16 @@ public class ListOfFound {
     }
 
     /**
-     * Setter for name.
+     * Mutator for name
      *
      * @param name
-     *            the name to set
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Getter for entries.
+     * Accessor for entries
      *
      * @return the entries
      */
@@ -60,28 +47,30 @@ public class ListOfFound {
     }
 
     /**
-     * Setter for entries.
+     * Mutator for entries.
      *
      * @param entries
-     *            the entries to set
+     *            the line entries
      */
     public void setEntries(List<String> entries) {
         this.entries = entries;
     }
 
     /**
-     * Checks to see if this file has any occurrences of the pattern
+     * Checks file for any occurrences of the input pattern
      *
-     * @return true if the size of the entries list is not zero
+     * @return
+     *      - true if entries list has any entries
+     *      - false if entries list does not have entries
      */
     public boolean hasFoundOccurence() {
         return this.entries.size() != 0;
     }
 
     /**
-     * Generates a string to be printed to the screen
+     * Generates the results string
      *
-     * @return the string to be printed
+     * @return string representation of the results
      */
     public String toString() {
         String ret = name + "\n\t";

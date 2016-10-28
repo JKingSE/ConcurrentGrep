@@ -1,6 +1,3 @@
-/**
- * Created by John King on 27-Oct-16.
- */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -11,24 +8,20 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * Main class to start and run the program.
+ * CGrep is the main class the manages the application
  *
- * @author Yin
- * @author sst8696
- * @author peter
+ * Created by John King on 27-Oct-16.
  */
 public class CGrep {
 
-    /**
-     * Thread Pool Size.
-     */
+    // Thread Pool Size
     private static final int THREADPOOLAMOUNT = 3;
 
     /**
-     * Main method to start the program.
+     * Main method used to configure the application
      *
      * @param args
-     *            - Input arguments
+     *            pattern [file1] [file2] (optional)
      */
     public static void main(String[] args) {
 
@@ -37,13 +30,13 @@ public class CGrep {
 
         String pattern = args[0].toString();
 
-        // Check argument length
+        // Check lenght of arguments
         if (args.length > 1) {
             for (int i = 1; i < args.length; i++) {
                 String argument = args[i].toString();
                 File file = new File(argument);
 
-                // Search File
+                // Search the file
                 if (file.exists()) {
                     try {
                         Callable<ListOfFound> searcher = new Search(file,
