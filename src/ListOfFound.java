@@ -74,8 +74,8 @@ public class ListOfFound {
      */
     public String toString() {
         String ret = name + "\n\t";
-        for (int i = 0; i < matches.size(); i++) {
-            ret = ret + " " + matches.get(i) + "\n\t";
+        for (String match : matches) {
+            ret = ret + " " + match + "\n\t";
         }
         return ret;
     }
