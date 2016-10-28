@@ -46,9 +46,9 @@ public class CGrep {
                 // Search File
                 if (file.exists()) {
                     try {
-                        Callable<Found> searcher = new FileSearch(file,
+                        Callable<ListOfFound> searcher = new Search(file,
                                 pattern);
-                        Future<Found> result = executor.submit(searcher);
+                        Future<ListOfFound> result = executor.submit(searcher);
                         System.out.println(result.get());
                     } catch (FileNotFoundException e) {
                         System.err.print(e.toString());
@@ -64,8 +64,8 @@ public class CGrep {
             }
         } else if (args.length == 1) {
             InputStream input = System.in;
-            Callable<Found> searcher = new FileSearch(input, pattern);
-            Future<Found> result = executor.submit(searcher);
+            Callable<ListOfFound> searcher = new Search(input, pattern);
+            Future<ListOfFound> result = executor.submit(searcher);
             try {
                 System.out.println(result.get());
             } catch (InterruptedException e) {
