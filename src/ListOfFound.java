@@ -12,11 +12,11 @@ public class ListOfFound {
     private String name;
 
     // Matching lines
-    private List<String> entries;
+    private List<String> matches;
 
     public ListOfFound() {
         this.setName(null);
-        this.setEntries(new ArrayList<String>());
+        this.setMatches(new ArrayList<String>());
     }
 
     /**
@@ -38,33 +38,33 @@ public class ListOfFound {
     }
 
     /**
-     * Accessor for entries
+     * Accessor for matches
      *
-     * @return the entries
+     * @return the matches
      */
-    public List<String> getEntries() {
-        return entries;
+    public List<String> getMatches() {
+        return matches;
     }
 
     /**
-     * Mutator for entries.
+     * Mutator for matches.
      *
-     * @param entries
-     *            the line entries
+     * @param matches
+     *            the line matches
      */
-    public void setEntries(List<String> entries) {
-        this.entries = entries;
+    public void setMatches(List<String> matches) {
+        this.matches = matches;
     }
 
     /**
      * Checks file for any occurrences of the input pattern
      *
      * @return
-     *      - true if entries list has any entries
-     *      - false if entries list does not have entries
+     *      - true if matches list has any matches
+     *      - false if matches list does not have matches
      */
-    public boolean hasFoundOccurence() {
-        return this.entries.size() != 0;
+    public boolean foundPattern() {
+        return this.matches.size() != 0;
     }
 
     /**
@@ -74,8 +74,8 @@ public class ListOfFound {
      */
     public String toString() {
         String ret = name + "\n\t";
-        for (int i = 0; i < entries.size(); i++) {
-            ret = ret + " " + entries.get(i) + "\n\t";
+        for (int i = 0; i < matches.size(); i++) {
+            ret = ret + " " + matches.get(i) + "\n\t";
         }
         return ret;
     }
